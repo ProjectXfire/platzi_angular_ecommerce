@@ -1,0 +1,21 @@
+<section *ngIf="user" class="profile">
+  <h1 class="profile__title">Mi perfil</h1>
+  <div class="profile__content">
+    <div class="group">
+      <h3>Nombre:</h3>
+      <p>{{ user.name }}</p>
+    </div>
+    <span class="divider"></span>
+    <div class="group">
+      <h3>Correo electrónico:</h3>
+      <p>{{ user.email }}</p>
+    </div>
+    <span class="divider"></span>
+    <div class="group">
+      <h3>Role:</h3>
+      <p>{{ user.role || "Not role assigned" }}</p>
+    </div>
+    <span class="divider"></span>
+  </div>
+  <a *ngIf="user && user.role === 'admin'" routerLink="/cms">Go to CMS</a>
+</section>

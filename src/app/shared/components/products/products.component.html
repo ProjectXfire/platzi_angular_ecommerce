@@ -1,0 +1,26 @@
+<div class="products">
+  <app-product
+    *ngFor="let product of products"
+    [product]="product"
+    (addedProduct)="addToCart($event)"
+  ></app-product>
+</div>
+<div class="product" [class.active]="active">
+  <button class="product__float-button" type="button" (click)="closeProduct()">
+    x
+  </button>
+  <div class="product-img">
+    <img [src]="product.images[0]" alt="" />
+  </div>
+  <div class="product__content">
+    <h2>{{ product.price | currency }}</h2>
+    <p>{{ product.title }}</p>
+    <p>{{ product.description }}</p>
+    <button type="button">Add to cart</button>
+  </div>
+</div>
+<div
+  class="sidebar-background"
+  [class.active]="active"
+  (click)="closeProduct()"
+></div>

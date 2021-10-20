@@ -1,0 +1,22 @@
+<div class="product-container">
+  <div class="product-image">
+    <app-img [changeImg]="product.images[0]"></app-img>
+  </div>
+  <div class="product">
+    <div class="product__detail">
+      <h2>{{ product.price | currency }}</h2>
+      <h3 *ngIf="product.taxes">
+        Taxes {{ product.taxes | currency }} {{ product.category.name }}
+      </h3>
+
+      <p>{{ product.title }}</p>
+    </div>
+    <div class="product__actions">
+      <button type="button" (click)="addToCart()">Add to cart</button>
+      <a routerLink="." [queryParams]="{ product: product.id }">
+        Quick detail
+      </a>
+      <a [routerLink]="['/product', product.id]">Detail</a>
+    </div>
+  </div>
+</div>

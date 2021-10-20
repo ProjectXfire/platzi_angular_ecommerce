@@ -1,0 +1,37 @@
+.layout {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "header header header"
+    "nav content content";
+  &__header {
+    grid-area: header;
+    padding: 10px;
+    background-color: #0d47a1;
+    color: white;
+    box-shadow: 1px 2px 4px 0 rgb(21 99 157 / 16%);
+    border-bottom: 1px solid rgba(21, 99, 157, 0.16);
+  }
+  &__nav {
+    grid-area: nav;
+    border-right: 1px solid rgba(21, 99, 157, 0.16);
+    background-color: #fff;
+    a {
+      margin: 0;
+      padding: 0;
+      padding: 1em;
+      cursor: pointer;
+      position: relative;
+      display: block;
+      text-decoration: none;
+      color: #000;
+    }
+  }
+  &__content {
+    grid-area: content;
+    background-color: #f3f8fb;
+    padding: 20px;
+  }
+}

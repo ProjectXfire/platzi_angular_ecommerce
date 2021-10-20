@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  & label {
+    font-weight: bolder;
+    font-size: 0.9rem;
+  }
+  & input {
+    padding: 10px 15px;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 10px;
+    background-color: rgb(228, 238, 241);
+    &::placeholder {
+      color: rgb(202, 202, 202);
+    }
+    &:focus {
+      border: 2px solid rgb(72, 166, 255);
+    }
+  }
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

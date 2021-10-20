@@ -1,0 +1,92 @@
+<nav class="nav-mobile" [class.active]="activeSideBar">
+  <div class="nav-mobile__menu">
+    <button type="button" (click)="showSidebar()">
+      <img src="./assets/svg/icon_menu.svg" alt="menu" />
+    </button>
+    <a href="/"> <img src="./assets/svg/logo_yard_sale.svg" alt="logo" /></a>
+    <a class="nav-mobile__cart" href="/"
+      ><img src="./assets/svg/icon_shopping_cart.svg" alt="cart" /><span>{{
+        counter
+      }}</span></a
+    >
+  </div>
+</nav>
+<nav class="sidebar" [class.active]="activeSideBar">
+  <div *ngIf="userEmail" class="sidebar__user">
+    <p>Welcome</p>
+    <span>{{ userEmail }}</span>
+    <a routerLink="/profile" (click)="hideSidebar()">Ver perfil</a>
+  </div>
+  <ul>
+    <li>
+      <a routerLink="/home" (click)="hideSidebar()">All</a>
+    </li>
+    <li *ngFor="let category of categories">
+      <a [routerLink]="['/category', category.id]" (click)="hideSidebar()">{{
+        category.name
+      }}</a>
+    </li>
+  </ul>
+  <button type="button" *ngIf="userEmail" (click)="logout()">Log out</button>
+  <button type="button" *ngIf="!userEmail" (click)="showLogin()">Login</button>
+  <button type="button" (click)="hideSidebar()">Close</button>
+</nav>
+<div
+  class="sidebar-background"
+  [class.active]="activeUserMenu || activeSideBar"
+  (click)="hideSidebar()"
+></div>
+<nav class="nav-desktop">
+  <div class="nav-desktop__menu">
+    <a class="nav-desktop__home" href="/">
+      <img src="./assets/svg/logo_yard_sale.svg" alt="logo"
+    /></a>
+    <div>
+      <ul>
+        <li>
+          <a
+            routerLink="/home"
+            routerLinkActive="menuActive"
+            (click)="hideSidebar()"
+            >All</a
+          >
+        </li>
+        <li *ngFor="let category of categories">
+          <a
+            [routerLink]="['/category', category.id]"
+            routerLinkActive="menuActive"
+            (click)="hideSidebar()"
+            >{{ category.name }}</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="nav-desktop__info">
+    <div *ngIf="userEmail" class="nav-desktop__user">
+      <p>
+        {{ userEmail }}
+      </p>
+      <button type="button" (click)="showUserMenu()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >keyboard_arrow_down</mat-icon
+        >
+      </button>
+    </div>
+    <div class="nav-desktop__actions">
+      <button *ngIf="!userEmail" type="button" (click)="showLogin()">
+        Login
+      </button>
+    </div>
+    <a class="nav-desktop__cart" href="/"
+      ><img src="./assets/svg/icon_shopping_cart.svg" alt="cart" /><span>{{
+        counter
+      }}</span></a
+    >
+  </div>
+</nav>
+<div class="user-menu" [class.active]="activeUserMenu">
+  <h1>{{ userEmail }}</h1>
+  <a routerLink="/profile" (click)="hideUserMenu()">Ver perfil</a>
+  <button type="button" (click)="logout()">Log out</button>
+</div>
