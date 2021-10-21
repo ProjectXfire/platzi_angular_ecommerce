@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// Modules
-import { Category } from '@models/product';
+import { Subscription } from 'rxjs';
+// Models
+import { Category, Product } from '@models/product';
+import { User } from '@models/user';
 // Services
 import { ModalService } from '@services/modal/modal.service';
 import { StoreService } from '@services/store/store.service';
@@ -13,12 +15,15 @@ import { TokenService } from '@services/token/token.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
   activeSideBar: boolean = false;
   activeUserMenu: boolean = false;
   counter: number = 0;
   userEmail: string | undefined = undefined;
   categories: Category[] = [];
+  // Observables
+  user$: Subscription | undefined;
+  cart$: Subscription | undefined;
 
   constructor(
     private storeService: StoreService,
@@ -29,12 +34,21 @@ export class NavComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.storeService.user$.subscribe((user) => (this.userEmail = user?.email));
-    this.storeService.myCart$.subscribe((prod) => (this.counter = prod.length));
+    this.user$ = this.storeService.user$.subscribe(
+      (user) => (this.userEmail = user?.email)
+    );
+    this.cart$ = this.storeService.myCart$.subscribe(
+      (prod) => (this.counter = prod.length)
+    );
     this.categoriesService
       .getAll()
       .subscribe((data) => (this.categories = data));
   }
+  ngOnDestroy(): void {
+    this.user$?.unsubscribe();
+    this.cart$?.unsubscribe();
+  }
+
   showLogin() {
     this.modalService.show();
     this.activeSideBar = false;

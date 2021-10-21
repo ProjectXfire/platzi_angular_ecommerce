@@ -1,33 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 // Services
 import { ModalService } from '@services/modal/modal.service';
 import { AuthService } from '@services/auth/auth.service';
-import { StoreService } from '@services/store/store.service';
-import { TokenService } from '@services/token/token.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   active: boolean = false;
   form = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
   error: string = '';
+  showLogin$: Subscription | undefined;
 
   constructor(
     private modalService: ModalService,
     private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private tokenService: TokenService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.modalService.showLogin$.subscribe((active) => (this.active = active));
+    this.showLogin$ = this.modalService.showLogin$.subscribe(
+      (active) => (this.active = active)
+    );
+  }
+  ngOnDestroy(): void {
+    this.showLogin$?.unsubscribe();
   }
 
   login(event: Event) {
