@@ -1,0 +1,29 @@
+<section class="cart-items">
+  <div>
+    <h1 class="cart-items__title">Mi carrito de compras</h1>
+    <span class="cart-items__message" *ngIf="cardProducts.length === 0"
+      >No tiene productos en el carrito 😔, podría agregar algunos 😉.</span
+    >
+    <app-cart-item
+      *ngFor="let item of cardProducts; let i = index"
+      [item]="item"
+      [index]="i"
+      (updateTotal)="updateTotal($event)"
+      (removeItem)="removeItem($event)"
+    ></app-cart-item>
+  </div>
+  <div *ngIf="cardProducts.length !== 0">
+    <div class="cart-items__detail">
+      <h1 class="cart-items__title">Resumen</h1>
+      <div class="cart-items__summary">
+        <p>Nº items:</p>
+        <span>{{ qtty }}</span>
+      </div>
+      <span class="divider"></span>
+      <div class="cart-items__summary">
+        <p>Monto total:</p>
+        <span>{{ total | currency }}</span>
+      </div>
+    </div>
+  </div>
+</section>

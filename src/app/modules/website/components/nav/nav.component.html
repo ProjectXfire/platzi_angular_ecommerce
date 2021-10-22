@@ -3,8 +3,10 @@
     <button type="button" (click)="showSidebar()">
       <img src="./assets/svg/icon_menu.svg" alt="menu" />
     </button>
-    <a href="/"> <img src="./assets/svg/logo_yard_sale.svg" alt="logo" /></a>
-    <a class="nav-mobile__cart" href="/"
+    <a routerLink="/">
+      <img src="./assets/svg/logo_yard_sale.svg" alt="logo"
+    /></a>
+    <a class="nav-mobile__cart" routerLink="/cart"
       ><img src="./assets/svg/icon_shopping_cart.svg" alt="cart" /><span>{{
         counter
       }}</span></a
@@ -38,7 +40,7 @@
 ></div>
 <nav class="nav-desktop">
   <div class="nav-desktop__menu">
-    <a class="nav-desktop__home" href="/">
+    <a class="nav-desktop__home" routerLink="/">
       <img src="./assets/svg/logo_yard_sale.svg" alt="logo"
     /></a>
     <div>
@@ -78,7 +80,7 @@
         Login
       </button>
     </div>
-    <a class="nav-desktop__cart" href="/"
+    <a class="nav-desktop__cart" routerLink="/cart"
       ><img src="./assets/svg/icon_shopping_cart.svg" alt="cart" /><span>{{
         counter
       }}</span></a

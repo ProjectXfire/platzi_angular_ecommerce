@@ -1,0 +1,33 @@
+<article class="cart" *ngIf="item">
+  <img class="cart__image" [src]="item.images[1]" alt="product-image" />
+  <div class="cart__detail">
+    <p class="cart__title">{{ item.title }}</p>
+    <p class="cart__price">{{ item.price | currency }}</p>
+    <p class="cart__description">{{ item.description }}</p>
+    <div class="cart__actions">
+      <div class="cart__actions-items">
+        <button
+          class="cart__buttons-less"
+          type="button"
+          (click)="less(item.price)"
+        >
+          -
+        </button>
+        <input type="number" readonly [(ngModel)]="qtty" />
+        <button
+          class="cart__buttons-plus"
+          type="button"
+          (click)="plus(item.price)"
+        >
+          +
+        </button>
+      </div>
+      <p class="cart__actions-total">
+        Total: <span>{{ total | currency }}</span>
+      </p>
+      <button class="cart__actions-remove" type="button" (click)="remove()">
+        Remove
+      </button>
+    </div>
+  </div>
+</article>

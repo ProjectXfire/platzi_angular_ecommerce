@@ -7,7 +7,6 @@ import { RegisterGuard } from '@guards/register.guard';
 import { LayoutComponent } from '@modules/website/components/layout/layout.component';
 // Pages components
 import { HomeComponent } from '@modules/website/pages/home/home.component';
-import { MyCartComponent } from '@modules/website/pages/my-cart/my-cart.component';
 import { RecoveryComponent } from '@modules/website/pages/recovery/recovery.component';
 import { ProductDetailComponent } from '@modules/website/pages/product-detail/product-detail.component';
 
@@ -50,6 +49,13 @@ const routes: Routes = [
         data: {
           preload: true,
         },
+      },
+      {
+        path: 'cart',
+        loadChildren: () =>
+          import('@modules/website/pages/my-cart/my-cart.module').then(
+            (m) => m.MyCartModule
+          ),
       },
       {
         path: 'product/:id',

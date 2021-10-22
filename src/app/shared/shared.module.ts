@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 // Material Design
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatStepperModule } from '@angular/material/stepper';
 // Pipes & Directives
 import { HightlightDirective } from './directives/hightlight.directive';
 import { ReversePipe } from './pipes/reverse.pipe';
@@ -32,6 +33,7 @@ import { ProductsComponent } from './components/products/products.component';
     ProductsComponent,
     MatIconModule,
     MatDividerModule,
+    MatStepperModule,
   ],
 })
 export class SharedModule {}

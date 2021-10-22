@@ -16,7 +16,7 @@
     <h2>{{ product.price | currency }}</h2>
     <p>{{ product.title }}</p>
     <p>{{ product.description }}</p>
-    <button type="button">Add to cart</button>
+    <button type="button" (click)="addToCart(product)">Add to cart</button>
   </div>
 </div>
 <div

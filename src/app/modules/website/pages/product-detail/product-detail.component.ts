@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Location } from '@angular/common';
+
 // Models
-import { Product } from '@models/product';
+import { Product, ProductInitValues } from '@models/product';
 // Services
 import { ProductsService } from '@services/products/products.service';
+import { StoreService } from '@services/store/store.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,8 +21,13 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private productsService: ProductsService,
+    private storeService: StoreService,
     private location: Location
   ) {}
+
+  addToCart() {
+    this.storeService.addToCart(this.product || ProductInitValues);
+  }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap

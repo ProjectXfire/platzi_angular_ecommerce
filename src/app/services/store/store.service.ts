@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-// Services
-import { ProductsService } from '@services/products/products.service';
-import { TokenService } from '@services/token/token.service';
 // Models
 import { Product } from '@models/product';
 import { User } from '@models/user';
@@ -12,17 +9,13 @@ import { User } from '@models/user';
 })
 export class StoreService {
   private myShoppingCart: Product[] = [];
-
   // Observables
   private myCart = new BehaviorSubject<Product[]>([]);
   myCart$ = this.myCart.asObservable();
   private user = new BehaviorSubject<User | null>(null);
   user$ = this.user.asObservable();
 
-  constructor(
-    private productsService: ProductsService,
-    private tokenService: TokenService
-  ) {}
+  constructor() {}
 
   // Cart
   addToCart(product: Product) {
@@ -31,6 +24,9 @@ export class StoreService {
       this.myShoppingCart.push(product);
     }
     this.myCart.next(this.myShoppingCart);
+  }
+  removeToCart(products: Product[]) {
+    this.myCart.next(products);
   }
   getTotalProducts() {
     return this.myShoppingCart;

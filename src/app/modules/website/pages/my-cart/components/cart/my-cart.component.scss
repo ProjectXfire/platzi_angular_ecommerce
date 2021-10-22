@@ -1,0 +1,45 @@
+.cart-items {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  &__title {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #a5d6a7;
+  }
+  &__message {
+    color: red;
+  }
+  &__detail {
+    padding: 20px;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2);
+  }
+  &__summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    p {
+      padding-right: 10px;
+    }
+    span {
+      font-weight: bolder;
+    }
+  }
+}
+
+.divider {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  height: 1px;
+  border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+@media screen and (min-width: 768px) {
+  .cart-items {
+    grid-template-columns: 2fr 1fr;
+    &__detail {
+      margin-top: 40px;
+    }
+  }
+}

@@ -27,6 +27,12 @@ body {
   border-radius: 10px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 button {
   font-family: "Josefin Sans", sans-serif;
   cursor: pointer;

@@ -20,7 +20,6 @@ export class ProductsComponent {
   @Output() nextPage = new EventEmitter();
   product: Product = ProductInitValues;
   myShoppingCart: Product[] = [];
-  total: number = 0;
   active: boolean = false;
   onError: 'loading' | 'success' | 'error' | 'init' = 'init';
 
@@ -33,13 +32,11 @@ export class ProductsComponent {
 
   addToCart(product: Product) {
     this.storeServices.addToCart(product);
-    this.total = this.storeServices.getTotalPrice();
+    this.active = false;
   }
-
   setNextPage() {
     this.nextPage.emit();
   }
-
   getProduct(id: string) {
     this.productsService.getOne(id).subscribe(
       (data) => {
@@ -49,7 +46,6 @@ export class ProductsComponent {
       (response) => console.log(response)
     );
   }
-
   closeProduct() {
     this.active = false;
     this.product = ProductInitValues;
